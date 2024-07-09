@@ -16,19 +16,19 @@ var (
 	ErrSpotNameEndWithNumber   = errors.New("spot name must end with a number")
 )
 
-type TicketType string
+type SpotStatus string
 
 const (
-	TicketTypeHalf TicketType = "half"
-	TicketTypeFull TicketType = "full"
+	SpotStatusAvailable SpotStatus = "available"
+	SpotStatusSold      SpotStatus = "sold"
 )
 
-type Ticket struct {
-	ID         string
-	EventID    string
-	Spot       *Spot
-	TicketType TicketType
-	Price      float64
+type Spot struct {
+	ID       string
+	EventID  string
+	Name     string
+	Status   SpotStatus
+	TicketID string
 }
 
 func NewSpot(event *Event, name string) (*Spot, error) {
