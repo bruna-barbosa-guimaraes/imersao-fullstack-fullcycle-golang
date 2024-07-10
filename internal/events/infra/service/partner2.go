@@ -7,17 +7,17 @@ import (
 	"net/http"
 )
 
-type Partner1 struct {
+type Partner2 struct {
 	BaseURL string
 }
 
-type Partner1ReservationRequest struct {
+type Partner2ReservationRequest struct {
 	Spots      []string `json:"spots"`
 	TicketKind string   `json:"ticket_kind"`
 	Email      string   `json:"email"`
 }
 
-type Partner1ReservationResponse struct {
+type Partner2ReservationResponse struct {
 	ID         string `json:"id"`
 	Email      string `json:"email"`
 	Spot       string `json:"spot"`
@@ -26,8 +26,8 @@ type Partner1ReservationResponse struct {
 	EventID    string `json:"event_id"`
 }
 
-func (p *Partner1) MakeReservation(req *ReservationRequest) ([]ReservationResponse, error) {
-	partnerReq := Partner1ReservationRequest{
+func (p *Partner2) MakeReservation(req *ReservationRequest) ([]ReservationResponse, error) {
+	partnerReq := Partner2ReservationRequest{
 		Spots:      req.Spots,
 		TicketKind: req.TicketType,
 		Email:      req.Email,
@@ -56,7 +56,7 @@ func (p *Partner1) MakeReservation(req *ReservationRequest) ([]ReservationRespon
 		return nil, fmt.Errorf("unexpected status code: %d", httpResp.StatusCode)
 	}
 
-	var partnerResp []Partner1ReservationResponse
+	var partnerResp []Partner2ReservationResponse
 	if err := json.NewDecoder(httpResp.Body).Decode(&partnerResp); err != nil {
 		return nil, err
 	}
