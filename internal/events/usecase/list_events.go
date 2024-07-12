@@ -10,8 +10,8 @@ type ListEventsUseCase struct {
 	repo domain.EventRepository
 }
 
-func NewListEventsUseCase(repo domain.EventRepository) (*ListEventsUseCase, error) {
-	return &ListEventsUseCase{repo: repo}, nil
+func NewListEventsUseCase(repo domain.EventRepository) *ListEventsUseCase {
+	return &ListEventsUseCase{repo: repo}
 }
 
 func (uc *ListEventsUseCase) Execute() (*ListEventsOutputDTO, error) {
